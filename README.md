@@ -1,0 +1,2 @@
+# MINITALK
+my minitalk project 🧑‍💻
