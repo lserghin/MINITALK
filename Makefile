@@ -1,7 +1,19 @@
-NAME1 = server
-NAME2 = client
-NAME1_BONUS = server_bonus
-NAME2_BONUS = client_bonus
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/14 22:47:32 by lserghin          #+#    #+#              #
+#    Updated: 2025/03/14 23:41:13 by lserghin         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME_1 = server
+NAME_2 = client
+NAME_1_BONUS = server_bonus
+NAME_2_BONUS = client_bonus
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -28,16 +40,16 @@ OBJS_BONUS = $(SRCS_BONUS:$(SRCS_BONUS_DIR)/%.c=$(OBJS_BONUS_DIR)/%.o)
 OBJS_SERVER_BONUS = $(OBJS_BONUS_DIR)/server_bonus.o
 OBJS_CLIENT_BONUS = $(OBJS_BONUS_DIR)/client_bonus.o
 
-all: libft $(NAME1) $(NAME2)
+all: libft $(NAME_1) $(NAME_2)
 
 libft:
 	@make -C libft
 
-$(NAME1): $(OBJS_SERVER)
+$(NAME_1): $(OBJS_SERVER)
 	@$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
 	@echo "Server project successfully built!"
 
-$(NAME2): $(OBJS_CLIENT)
+$(NAME_2): $(OBJS_CLIENT)
 	@$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
 	@echo "Client project successfully built!"
 
@@ -45,13 +57,13 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(OBJS_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-bonus: libft $(NAME1_BONUS) $(NAME2_BONUS)
+bonus: libft $(NAME_1_BONUS) $(NAME_2_BONUS)
 
-$(NAME1_BONUS): $(OBJS_SERVER_BONUS)
+$(NAME_1_BONUS): $(OBJS_SERVER_BONUS)
 	@$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
 	@echo "Server_bonus project successfully built!"
 
-$(NAME2_BONUS): $(OBJS_CLIENT_BONUS)
+$(NAME_2_BONUS): $(OBJS_CLIENT_BONUS)
 	@$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
 	@echo "Client_bonus project successfully built!"
 
@@ -65,11 +77,10 @@ clean:
 	@echo "Object files removed."
 
 fclean: clean
-	@rm -f $(NAME1) $(NAME2) $(NAME1_BONUS) $(NAME2_BONUS)
+	@rm -f $(NAME_1) $(NAME_2) $(NAME_1_BONUS) $(NAME_2_BONUS)
 	@make -C libft fclean
 	@echo "Executables and libraries removed."
 
 re: fclean all
 
 .PHONY: all clean fclean re bonus libft
-

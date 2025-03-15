@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 17:09:09 by lserghin          #+#    #+#             */
+/*   Updated: 2025/03/14 17:09:09 by lserghin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
 void	ft_handle_signal(int signal, siginfo_t *info, void *context)
@@ -13,10 +25,7 @@ void	ft_handle_signal(int signal, siginfo_t *info, void *context)
 		bit_read = 0;
 		c = 0;
 	}
-	if (signal == SIGUSR1)
-		c = c * 2 + 0;
-	else if (signal == SIGUSR2)
-		c = c * 2 + 1;
+	c = c * 2 + (signal == SIGUSR2);
 	bit_read++;
 	if (bit_read == 8)
 	{
@@ -27,6 +36,8 @@ void	ft_handle_signal(int signal, siginfo_t *info, void *context)
 		bit_read = 0;
 		c = 0;
 	}
+	if (kill(client_pid, SIGUSR2) < 0)
+		return (printf("Error: kill failed!\n"), exit(EXIT_FAILURE));
 }
 
 int	main(int ac, char **av)
@@ -45,7 +56,7 @@ int	main(int ac, char **av)
 	if (sigaction(SIGUSR1, &sa, NULL) < 0
 		|| sigaction(SIGUSR2, &sa, NULL) < 0)
 		return (ft_putstr_fd("Error: sigaction failed!\n", 2), 1);
-	while (6)
+	while (42)
 		pause();
 	return (0);
 }

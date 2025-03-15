@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 21:27:16 by lserghin          #+#    #+#             */
-/*   Updated: 2025/01/19 11:21:50 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/14 16:52:02 by lserghin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 		f(index, s + index);
 		index++;
 	}
+	return ;
 }

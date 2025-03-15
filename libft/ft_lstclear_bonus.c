@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:24:58 by lserghin          #+#    #+#             */
-/*   Updated: 2025/01/19 11:19:59 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/14 16:48:02 by lserghin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 		current = next;
 	}
 	*lst = NULL;
+	return ;
 }

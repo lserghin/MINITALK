@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 21:27:11 by lserghin          #+#    #+#             */
-/*   Updated: 2025/01/19 11:21:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/14 16:50:55 by lserghin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	ft_putnbr_fd(int n, int fd)
 		un = n;
 	while (un)
 	{
-		*variant_s = (un % 10) + '0';
+		*variant_s++ = (un % 10) + '0';
 		un /= 10;
-		variant_s++;
 	}
 	while (variant_s > str)
 		write(fd, --variant_s, 1);
+	return ;
 }
