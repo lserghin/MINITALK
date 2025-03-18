@@ -6,14 +6,14 @@
 #    By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/14 22:47:32 by lserghin          #+#    #+#              #
-#    Updated: 2025/03/18 00:33:29 by lserghin         ###   ########.fr        #
+#    Updated: 2025/03/18 02:59:08 by lserghin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME_1 = server
 NAME_2 = client
-NAME_3_BONUS = server_bonus
-NAME_4_BONUS = client_bonus
+NAME_3 = server_bonus
+NAME_4 = client_bonus
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -57,13 +57,13 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(OBJS_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-bonus: libft $(NAME_3_BONUS) $(NAME_4_BONUS)
+bonus: libft $(NAME_3) $(NAME_4)
 
-$(NAME_3_BONUS): $(OBJS_SERVER_BONUS)
+$(NAME_3): $(OBJS_SERVER_BONUS)
 	@$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
 	@echo "Server_bonus project successfully built!"
 
-$(NAME_4_BONUS): $(OBJS_CLIENT_BONUS)
+$(NAME_4): $(OBJS_CLIENT_BONUS)
 	@$(CC) $(CFLAGS) $< $(LDFLAGS) -o $@
 	@echo "Client_bonus project successfully built!"
 
@@ -77,7 +77,7 @@ clean:
 	@echo "Object files removed."
 
 fclean: clean
-	@rm -f $(NAME_1) $(NAME_2) $(NAME_3_BONUS) $(NAME_4_BONUS)
+	@rm -f $(NAME_1) $(NAME_2) $(NAME_3) $(NAME_4)
 	@make -C libft fclean
 	@echo "Executables and libraries removed."
 
