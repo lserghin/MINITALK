@@ -6,13 +6,13 @@
 /*   By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:09:09 by lserghin          #+#    #+#             */
-/*   Updated: 2025/03/14 17:09:09 by lserghin         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:54:24 by lserghin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	ft_handle_signal(int signal, siginfo_t *info, void *context)
+static void	ft_handle_signal(int signal, siginfo_t *info, void *context)
 {
 	static char		c;
 	static int		bit_read;
@@ -37,7 +37,7 @@ void	ft_handle_signal(int signal, siginfo_t *info, void *context)
 		c = 0;
 	}
 	if (kill(client_pid, SIGUSR2) < 0)
-		return (printf("Error: kill failed!\n"), exit(EXIT_FAILURE));
+		return (ft_putstr_fd("Error: kill failed!\n", 2), exit(1));
 }
 
 int	main(int ac, char **av)
@@ -56,7 +56,7 @@ int	main(int ac, char **av)
 	if (sigaction(SIGUSR1, &sa, NULL) < 0
 		|| sigaction(SIGUSR2, &sa, NULL) < 0)
 		return (ft_putstr_fd("Error: sigaction failed!\n", 2), 1);
-	while (42)
+	while (1337)
 		pause();
 	return (0);
 }

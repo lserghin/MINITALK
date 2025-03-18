@@ -6,7 +6,7 @@
 /*   By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/02 20:10:25 by lserghin          #+#    #+#             */
-/*   Updated: 2025/03/14 16:53:10 by lserghin         ###   ########.fr       */
+/*   Updated: 2025/03/18 00:27:45 by lserghin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 # define LIBFT_H
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <fcntl.h>
 # include <stdarg.h>
 # include <unistd.h>
-# include <limits.h>
-# include <time.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1

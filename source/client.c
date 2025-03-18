@@ -6,7 +6,7 @@
 /*   By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:09:07 by lserghin          #+#    #+#             */
-/*   Updated: 2025/03/14 17:09:07 by lserghin         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:53:45 by lserghin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 volatile sig_atomic_t	g_acknowledgment;
 
-int	ft_check_pid(char *str)
+static int	ft_check_pid(char *str)
 {
 	while (*str)
 	{
@@ -25,14 +25,14 @@ int	ft_check_pid(char *str)
 	return (1);
 }
 
-void	ft_handle_ack(int signal)
+static void	ft_handle_ack(int signal)
 {
 	if (signal == SIGUSR2)
 		g_acknowledgment = 1;
 	return ;
 }
 
-void	ft_send_byte(unsigned char c, pid_t pid)
+static void	ft_send_byte(char c, pid_t pid)
 {
 	int	bit_mask;
 
@@ -43,16 +43,16 @@ void	ft_send_byte(unsigned char c, pid_t pid)
 		if ((c / bit_mask) % 2)
 		{
 			if (kill(pid, SIGUSR2) < 0)
-				return (printf("Error: kill failed!\n"), exit(EXIT_FAILURE));
+				return (ft_putstr_fd("Error: kill failed!\n", 2), exit(1));
 		}
 		else
 		{
 			if (kill(pid, SIGUSR1) < 0)
-				return (printf("Error: kill failed!\n"), exit(EXIT_FAILURE));
+				return (ft_putstr_fd("Error: kill failed!\n", 2), exit(1));
 		}
 		bit_mask /= 2;
-		if (g_acknowledgment != 1)
-			usleep(1337);
+		while (g_acknowledgment != 1)
+			;
 	}
 	return ;
 }

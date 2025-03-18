@@ -6,7 +6,7 @@
 /*   By: lserghin <lserghin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 17:09:14 by lserghin          #+#    #+#             */
-/*   Updated: 2025/03/14 17:09:14 by lserghin         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:55:01 by lserghin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 volatile sig_atomic_t	g_acknowledgment;
 
-int	ft_check_pid(char *str)
+static int	ft_check_pid(char *str)
 {
 	while (*str)
 	{
@@ -25,7 +25,7 @@ int	ft_check_pid(char *str)
 	return (1);
 }
 
-void	ft_handle_ack(int signal)
+static void	ft_handle_ack(int signal)
 {
 	if (signal == SIGUSR2)
 		g_acknowledgment = 2;
@@ -34,13 +34,13 @@ void	ft_handle_ack(int signal)
 	return ;
 }
 
-void	ft_kill(pid_t pid, int signal)
+static void	ft_kill(pid_t pid, int signal)
 {
 	if (kill(pid, signal) < 0)
 		return (ft_putstr_fd("Error: kill failed!\n", 2), exit(EXIT_FAILURE));
 }
 
-void	ft_send_byte(unsigned char c, pid_t pid)
+static void	ft_send_byte(unsigned char c, pid_t pid)
 {
 	int	bit_mask;
 
@@ -57,7 +57,6 @@ void	ft_send_byte(unsigned char c, pid_t pid)
 		{
 			if (g_acknowledgment == 1)
 				return ;
-			usleep(1337);
 		}
 	}
 	return ;
